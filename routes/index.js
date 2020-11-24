@@ -53,4 +53,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { classData });
 });
 
+router.get('/class/:class', (req, res) => {
+  res.render('class');
+})
+
 module.exports = router;
