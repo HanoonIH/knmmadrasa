@@ -1,2 +1,21 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<section class="px-3 px-sm-0">
+
+    <div class="container my-5">
+
+        {{#each classData}}
+        <div class="row bg-white class-card my-3">
+            <div class="col-sm-4 p-0">
+                <img src="images/thumbs/class{{this.class}}/classthumb.jpg" class="img-fluid class-card-img" alt="">
+            </div>
+
+            <div class="col-sm-8">
+                <p class="font-weight-bold h3">Class {{this.class}}</p>
+                <p>Renai TV</p>
+                <p class="text-warning">{{this.subjectsCount}} subjects</p>
+            </div>
+        </div>
+        {{/each}}
+
+    </div>
+
+</section>

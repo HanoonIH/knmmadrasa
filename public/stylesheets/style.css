@@ -1,8 +1,30 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #e5e5e5;
 }
 
 a {
   color: #00B7FF;
+}
+
+.fa-youtube-play, .fa-bars {
+  color: #fff;
+  font-size: 1.3em;
+}
+
+.class-card {
+  border-radius: 10px;
+}
+
+.class-card-img {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+@media screen and (max-width: 575px) {
+
+  .class-card-img {
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 10px;
+  }
+  
 }
