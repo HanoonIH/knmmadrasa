@@ -1,0 +1,74 @@
+    <section>
+        <div class="row mt-3 mt-md-5 p-1 p-md-3 bg-white rounded-lg" id="mainvideo">
+            
+        </div>
+    </section>
+<div class="container">
+    <section id="videoloop">
+    </section>
+</div>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        var key = 'AIzaSyArpdeGfjTl9obTX-75MeEtxTXvSBm-0SY';
+        var playlistId = 'PLqg6g_snqtMI4O5swZToOo5p3EjX-Ykm5';
+        var URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
+
+        var options = {
+            part: 'snippet',
+            key: key,
+            maxResults: 100,
+            playlistId: playlistId
+        };
+
+        loadPlaylistItems();
+
+        function loadMainVideo(videoId) {
+            document.getElementById('mainvideo').innerHTML = `
+                <iframe class="col-12" style="height: auto; padding: 0;"  src="https://www.youtube.com/embed/${videoId}" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+            `
+        }
+
+        function loadPlaylistItems() {
+            $.getJSON(URL, options, (data) => {
+                console.log(data);
+                loadMainVideo(data.items[0].snippet.resourceId.videoId)
+                videoloop(data.items);
+            })
+        }
+
+        function videoloop(itemsArray) {
+
+            itemsArray.forEach((item) => {
+                let thumb = item.snippet.thumbnails.medium.url;
+
+                $('#videoloop').append(
+                    `
+                    <div class="row bg-white class-card my-4 mx-2 align-content-center">
+                        <div class="col-sm-4 p-0">
+                            <a href='https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}'>
+                            <img src="${thumb}" class="img-fluid class-card-img" alt="">   
+                            </a>
+                        </div>
+                        <div class="col-sm-8 my-auto py-2">  
+                                     <a href='https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}'>
+                            <p class="font-weight-bold h6"> ${item.snippet.title} </p>
+                            </a>
+                            <p class="">  </p>
+                        </div>
+                    </div>`
+                )
+
+
+            })
+
+        }
+
+    });
+
+</script>
