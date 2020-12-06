@@ -6,8 +6,8 @@ const classData = [
   {
     class: '01',
     subjects: [ 
-      { name: 'Islamika Balapadavali'},
-      { name: 'Arabic'}
+      'Islamika Balapadavali',
+      'Arabic',
     ],
     subjectsCount: 5
   },
@@ -72,12 +72,20 @@ router.get('/', function(req, res, next) {
   res.render('index', { classData });
 });
 
+// router.get('/class/:class', (req, res) => {
+//   let classSubjects = classData.filter((item) => {
+//     return item.class == req.params.class
+//   });
+//   res.render(`class${req.params.class}`, { classSubs: classSubjects[0].subjects });
+// });
+
 router.get('/class/:class', (req, res) => {
-  let classSubjects = classData.filter((item) => {
+  let selectedClass = classData.filter((item) => {
     return item.class == req.params.class
   });
-  // console.log(classSubjects[0].subjects);
-  res.render(`class${req.params.class}`, { classSubs: classSubjects[0].subjects });
-})
+  let subjects = selectedClass[0].subjects;
+  console.log(subjects);
+  res.render(`class${req.params.class}`, { subjects });
+});
 
 module.exports = router;
